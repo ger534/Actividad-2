@@ -44,32 +44,125 @@ public class DobleEnlazada<T> implements GenLista<T> {
 		 }
 		 return null;	 
 	 }
-	 
-	/**
+	 /**
 	 * Metodo que inserta segun posicion dada
 	 */
 	@Override
-	public void Insertar(T pDato,int pos) {
-		if (pos <= tamaño() + 1)    {
-            GenNodo<T> nuevo = new GenNodo<T>(pDato);
-            if (pos == 1){
+        public void Insertar(T pDato, int pPos) {
+            if (pPos <= tamaño() + 1)    {
+            GenNodo<T> nuevo = new GenNodo<>(pDato);
+            if (pPos == 0){
                 nuevo.set_Siguiente(_raiz);
-                if (_raiz != null)
-                    
-                    _raiz.set_Anterior(nuevo);
+                _raiz = nuevo;
+                nuevo.set_Anterior(null);
+            }else if (pPos == -1){
+            	if(tamaño() == 0){
                     _raiz = nuevo;
-            } else
-                if (pos == tamaño() + 1)    {
+            	}else{
                     GenNodo<T> tmp = _raiz;
                     while (tmp.get_Siguiente()!= null) {
                         tmp = tmp.get_Siguiente();
                     }
                     tmp.set_Siguiente(nuevo);
                     nuevo.set_Anterior(tmp);
-                    nuevo.set_Siguiente(null);
+            	}
+            }else
+                if (pPos == tamaño() + 1)    {
+                    GenNodo<T> tmp = _raiz;
+                    while (tmp.get_Siguiente()!= null) {
+                        tmp = tmp.get_Siguiente();
+                    }
+                    tmp.set_Siguiente(nuevo);
+                    nuevo.set_Anterior(tmp);
+                  
+//                    nuevo.set_next(null);
+                }else {
+                    GenNodo<T> tmp = _raiz;
+                    for (int i = 0 ; i <= pPos - 2 ; i++)
+                        tmp = tmp.get_Siguiente();
+                    GenNodo<T> siguiente = tmp.get_Siguiente();
+                    tmp.set_Siguiente(nuevo);
+                    nuevo.set_Siguiente(siguiente);
+                    nuevo.set_Anterior(tmp);
+                }
+		}
+	}
+        
+        /**
+         * Metodo que agrega un nuevo nodo al inicio de la lista doblemente
+         * enlazada
+         * @param pDato 
+         */
+        
+        public void AddFirst( T pDato){
+            GenNodo<T> nuevo=new GenNodo<>(pDato);
+            if (tamaño()==0){
+                _raiz=nuevo;
+            }else{
+                nuevo.set_Siguiente(_raiz);
+                //_raiz.set_Anterior(nuevo);
+                _raiz=nuevo;
+            }
+        
+        }
+        
+        public void AddLast(T pDato){
+            GenNodo<T> nuevo=new GenNodo<>(pDato);
+            GenNodo<T> temp=_raiz;
+            while(temp.get_Siguiente()!=null){
+                temp=temp.get_Siguiente();
+            }
+            temp.set_Siguiente(nuevo);
+            nuevo.set_Anterior(temp);
+        }
+        
+        /**
+         * Metodo que borrar el primer elemento de la lista doblemente enlazada
+         */
+        public void DeleteFirst(){
+            _raiz=_raiz.get_Siguiente();
+        }
+        
+        /**
+         * Metodo que borrar el ultimo elemento de la lista doblemente enlazada
+         */
+        
+        public void DeleteLast(){
+            GenNodo<T> temp=_raiz;
+            while(temp.get_Siguiente().get_Siguiente()!=null){
+                temp=temp.get_Siguiente();
+            }
+            temp.get_Siguiente().set_Anterior(null);
+            temp.set_Siguiente(null);
+        }
+        
+        
+	/**
+	 * Metodo que inserta segun posicion dada
+	 */
+        /*
+	@Override
+	public void Insertar(T pDato,int pos) {
+            if (pos <= tamaño())    {
+            GenNodo<T> nuevo = new GenNodo<T>(pDato);
+            if (pos == 0){
+                nuevo.set_Siguiente(_raiz);
+                if (_raiz == null)
+                    
+                    _raiz.set_Anterior(nuevo);
+                    _raiz = nuevo;
+            } else
+                if (pos == tamaño())    {
+                    GenNodo<T> tmp = _raiz;
+                    while (tmp.get_Siguiente()!= null) {
+                        tmp = tmp.get_Siguiente();
+                    }
+                    tmp.set_Siguiente(nuevo);
+                    nuevo.set_Anterior(tmp);
+                    //nuevo.set_Siguiente(null);
                 } else {
                     GenNodo<T> tmp = _raiz;
-                    for (int i = 1 ; i <= pos - 2 ; i++)
+                    for (int i = 0 ; i <= pos - 2 ; i++)
                         tmp = tmp.get_Siguiente();
                     GenNodo<T> siguiente = tmp.get_Siguiente();
                     tmp.set_Siguiente(nuevo);
@@ -80,9 +173,9 @@ public class DobleEnlazada<T> implements GenLista<T> {
         }
 
 	}
-	/**
-	 * Borra segun la posicion dada
-	 */
+        */
+	
+            /*
 	@Override
 	public T Borrar(int pos) {
 	    if (pos <= tamaño())    {
@@ -103,6 +196,35 @@ public class DobleEnlazada<T> implements GenLista<T> {
         }
 		return null;
 	}
+            
+        */
+        
+        /**
+	 * Borra segun la posicion dada
+	 */
+        
+        public T Borrar(int pPos) {
+	    if (pPos <= tamaño())    {
+            if (pPos == 0) {
+                _raiz = _raiz.get_Siguiente();
+                if (_raiz != null)
+                    _raiz.set_Anterior(null);
+            } else {
+                GenNodo<T> tmp = _raiz;
+                for (int i = 0 ; i <= pPos - 2 ; i++)
+                    tmp = tmp.get_Siguiente();
+                GenNodo<T> siguiente = tmp.get_Siguiente();
+                siguiente = siguiente.get_Siguiente();
+                tmp.set_Siguiente(siguiente);
+                if (siguiente != null)
+                    siguiente.set_Anterior(tmp);
+            }
+            
+	}
+            return null;
+        }
+        
+            
 	/**
 	 * Busca segun la posicion dada
 	 */
@@ -128,6 +250,19 @@ public class DobleEnlazada<T> implements GenLista<T> {
 		}
 
 	}
-
+        
+        public boolean Search(T pDato) {
+		  GenNodo<T> tmp = _raiz;
+	        while (tmp != null) {
+	            if (tmp.get_Dato() == pDato){
+	            	System.out.println("Encontrado");
+	                return true;
+	            }
+	            tmp = tmp.get_Siguiente();
+	        }
+                System.out.println("No encontrado");
+	        return false;
 }
+}
+
 
