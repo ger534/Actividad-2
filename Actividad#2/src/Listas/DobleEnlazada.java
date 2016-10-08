@@ -191,13 +191,11 @@ public class DobleEnlazada<T> implements GenLista<T> {
 	        int i=0;
                 while (tmp != null) {
 	            if (tmp.get_Dato() == pDato){
-	            	System.out.println("Encontrado");
 	                return i;
 	            }
 	            tmp = tmp.get_Siguiente();
                     i++;
 	        }
-                System.out.println("No encontrado");
 	        return -1;
         }
 }

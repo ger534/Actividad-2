@@ -243,6 +243,19 @@ public class CircularSimple<T> implements GenLista<T> {
 	        }
 	        return cant;
 	    }
+         public int Encontrar(T pDato) {
+            GenNodo<T> tmp=_raiz;
+            for(int i= 0;i<tamaño();i++){
+                if(tmp.get_Dato().equals(pDato)){
+                    System.out.println(tmp.get_Dato());
+                    return i;
+                }if(tmp.get_Dato()!= pDato){
+                    System.out.println(tmp.get_Dato());
+                    tmp=tmp.get_Siguiente();
+                }
+            }
+            return -1;
+	}
 }
 
   
