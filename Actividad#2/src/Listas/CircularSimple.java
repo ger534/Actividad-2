@@ -201,6 +201,9 @@ public class CircularSimple<T> implements GenLista<T> {
             return false;
 	}
 
+        /**
+         * Metodo que imprime como esta conformada la lista
+         */
 	@Override
 	public void Imprimir() {
                 System.out.println("tamano");
@@ -219,7 +222,7 @@ public class CircularSimple<T> implements GenLista<T> {
 */
 	}
 	
-		/**
+        /**
 	 * Devuelve el tamaño de la lista
 	 * @return
 	 */

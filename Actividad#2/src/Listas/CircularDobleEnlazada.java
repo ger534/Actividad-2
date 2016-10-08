@@ -25,47 +25,14 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
 	}
 	
 	/**
-	 * Devuelve el tamaño de la lista
-	 * @return
-	 */
-	 public int tamaño(){
-	        int cant = 0;
-	        GenNodo<T> tmp = _raiz;
-	        while (tmp != _raiz.get_Anterior()) {
-	            tmp = tmp.get_Siguiente();
-	            cant++;
-	        }
-	        return cant+1;
-	    }
-	
-	/**
-	 * Inserta al inicio
-	 */
-	@Override
-	public void Insertar(T pDato,int pos) {
-		 GenNodo<T> tmp = new GenNodo<T>(pDato);
-	        if (_raiz == null && pos == 1) {
-	            tmp.set_Siguiente(tmp);
-	            tmp.set_Anterior(tmp);            
-	            _raiz = tmp;
-	        } else {
-	            GenNodo<T> ultimo = _raiz.get_Anterior();
-	            tmp.set_Siguiente(_raiz);
-	            tmp.set_Anterior(ultimo);
-	            _raiz.set_Anterior(tmp);
-	            ultimo.set_Siguiente(tmp);
-	            _raiz = tmp;
-	        }
-		
-	}
-        
-        /**
-         * Metodo que inserta un elemento en una posicion dada de la lista
+         * Metodo que inserta un elemento al inicio de la lista doblemente 
+         * circular
          * @param pDato
          * @param pPos 
          */
-        
-        public void AddAtIndex(T pDato, int pPos) {
+
+         
+	 public void AddAtIndex(T pDato, int pPos) {
            // if (pPos <= tamaño() + 1)    {
                                     //System.out.println("Entro");
 
@@ -74,12 +41,13 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
                 System.out.println("Aqui1");
                _raiz = nuevo;
                 nuevo.set_Siguiente(_raiz);
+                nuevo.set_Anterior(null);
                 _tail=nuevo;
                 System.out.println(_raiz.get_Siguiente().get_Dato());
                 
                 //nuevo.set_Anterior(null);
             }else if (pPos == -1){
-                                System.out.println("Aqui2");
+                 System.out.println("Aqui2");
 
             	if(tamaño() == 0){
                     _raiz = nuevo;
@@ -93,7 +61,7 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
             	}
             }else
                 if (pPos == tamaño() + 1)    {
-                                   System.out.println("Aqui3");
+                    System.out.println("Aqui3");
 
                     GenNodo<T> tmp = _raiz;
                     while (tmp.get_Siguiente()!= null) {
@@ -101,6 +69,7 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
                     }
                     tmp.set_Siguiente(nuevo);
                     nuevo.set_Siguiente(_raiz);
+                    nuevo.set_Anterior(tmp);
                     _tail=nuevo;
                     //nuevo.set_Anterior(tmp);
                   
@@ -117,18 +86,17 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
 
                     //GenNodo<T> siguiente = tmp.get_Siguiente();
                     tmp.set_Siguiente(nuevo);
+                    nuevo.set_Anterior(tmp);
                     nuevo.set_Siguiente(_raiz);
                     _tail=nuevo;
-                                        System.out.println("Aqui4.1.1");
-                                        //System.out.println(tamaño());
-
-
+                     System.out.println("Aqui4.1.1");
+                     //System.out.println(tamaño());
                     //nuevo.set_Anterior(tmp);
                     }else{
-                                            System.out.println("Aqui4.2");
-
+                        System.out.println("Aqui4.2");
                         GenNodo<T> siguiente = tmp.get_Siguiente();
                         tmp.set_Siguiente(nuevo);
+                        nuevo.set_Anterior(tmp);
                         nuevo.set_Siguiente(siguiente);
                         _tail=nuevo;
                         //nuevo.set_Anterior(tmp);
@@ -136,43 +104,151 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
                 }
 		
 	}
-
-	/**
-	 * Borra el ultimo
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public T Borrar(int pos) {
-		if (_raiz == null)
-			return null;
-		else{
-			GenNodo<T> tmp = _raiz;
-			int i = 0;
-			while (i<=tamaño() && pos != i){
-				tmp = tmp.get_Siguiente();
-				i++;
-			}
-			tmp = tmp.get_Anterior();
-			tmp.set_Siguiente(tmp.get_Siguiente().get_Siguiente());
-			tmp.set_Siguiente(null);
-			
-			return (T) tmp;
-		}
+       
+          /**
+         * Metodo que agrega un nuevo nodo al inicio de la lista circular doblemente
+         * enlazada
+         *@param pDato
+         */
+       
+        public void AddFirst (T pDato){
+            GenNodo<T> nuevo=new GenNodo<>(pDato);
+            
+            nuevo.set_Siguiente(_raiz);
+            nuevo.set_Anterior(null);
+            _raiz=nuevo;
+            _tail.set_Siguiente(nuevo);
+        }
+        
+         /**
+         * Metodo que inserta un elemento al final de la lista circular doblemente
+         * enlazada
+         */
+        public void AddLast(T pDato){
+            GenNodo<T> tmp = _raiz;
+            GenNodo<T> nuevo= new GenNodo<>(pDato);
+                
+                for(int i=0;i<tamaño()-1;i++){
+                    System.out.println(tmp.get_Dato());
+			tmp = tmp.get_Siguiente();
+                }
+                
+                tmp.set_Siguiente(nuevo);
+                nuevo.set_Anterior(tmp);
+                nuevo.set_Siguiente(_raiz);
+                _tail=nuevo;
+        }
+        
+        /**
+         * Metodo que elimina un elemento segun una posicion dada
+         * @param pPos
+         * @return 
+         */
+	public T DeleteAtIndex(int pPos) {
+	    if (pPos <= tamaño())    {
+            if (pPos == 0) {
+                _raiz = _raiz.get_Siguiente();
+                _tail=_raiz;
+                if (_raiz != null)
+                    _raiz.set_Anterior(null);
+            } else {
+                GenNodo<T> tmp = _raiz;
+                for (int i = 0 ; i <= pPos - 2 ; i++)
+                    tmp = tmp.get_Siguiente();
+                GenNodo<T> siguiente = tmp.get_Siguiente();
+                siguiente = siguiente.get_Siguiente();
+                tmp.set_Siguiente(siguiente);
+                _tail=tmp;
+                if (siguiente != null)
+                    siguiente.set_Anterior(tmp);
+            }
+            
 	}
-
+            return null;
+        }
+        
+        /**
+         * Metodo que borra el primer elemento de la lista
+         */
+        public void DeleteFirst(){
+            _raiz=_raiz.get_Siguiente();
+            _tail.set_Siguiente(_raiz);
+        }
+        
+        
+        /**
+         * Metodo que borra el ulitmo elemento de la lista
+         */
+        
+        public void DeleteLast(){
+            GenNodo<T> tmp=_raiz;
+            for(int i=0;i<tamaño()-2;i++){
+                tmp=tmp.get_Siguiente();
+            }
+            tmp.set_Siguiente(_raiz);
+            _tail=tmp;
+            _raiz.set_Anterior(_tail);
+        }
+        
+        
+        /**
+         * Metodo que retorna true o false al buscar un dato en la lista
+         * @param pDato
+         * @return 
+         */
+	
+	public boolean Search(T pDato) {
+            GenNodo<T> tmp=_raiz;
+            for(int i= 0;i<tamaño();i++){
+                if(tmp.get_Dato().equals(pDato)){
+                    System.out.println(tmp.get_Dato());
+                    System.out.println("Encontrado");
+                    return true;
+                }if(tmp.get_Dato()!= pDato){
+                    System.out.println(tmp.get_Dato());
+                    tmp=tmp.get_Siguiente();
+                }
+            }
+            System.out.println("No encontrado");
+            return false;
+	}
+        
+        
+         /**
+	 * Devuelve el tamaño de la lista
+	 * @return
+	 */
+        @Override
+	 public int tamaño(){
+	        int cant = 0;
+                int cont=0;
+	        GenNodo<T> tmp = _raiz;
+	        while (tmp != _raiz || cont==0) {
+	            tmp = tmp.get_Siguiente();
+	            cant++;
+                    cont++;
+	        }
+	        return cant;
+	    }
+         
+         /**
+          * Metodo que imprime como esta conformada la lista
+          */
 	@Override
 	public void Imprimir() {
-		   if (_raiz != null) {
-	            GenNodo<T> tmp = _raiz;
-	            do {
-	            	System.out.println(tmp.get_Dato());
-	                tmp = tmp.get_Siguiente();                
-	            } while (tmp != _raiz);
-	            System.out.println();
-	        }  
-		
+                System.out.println("tamano");
+                System.out.println(tamaño());
+		GenNodo<T> tmp = _raiz;
+                
+                for(int i=0;i<tamaño();i++){
+                    System.out.println(tmp.get_Dato());
+			tmp = tmp.get_Siguiente();
+                }/*
+		while (tmp != null){
+			System.out.println(tmp.get_Dato());
+			tmp = tmp.get_Siguiente();
+                        cont+=1;
+		}
+*/
 	}
-
-
-
 }

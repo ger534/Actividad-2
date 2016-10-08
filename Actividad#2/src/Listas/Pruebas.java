@@ -12,7 +12,7 @@ package Listas;
 public class Pruebas {
     public static void main (String [] args){
         DobleEnlazada _de=new DobleEnlazada();
-        CircularSimple _da=new CircularSimple();
+        CircularDobleEnlazada _dt=new CircularDobleEnlazada();
         
        /* _de.Insertar(1, 0);
         _de.Insertar(2, 1);
@@ -20,13 +20,16 @@ public class Pruebas {
         _de.Insertar(5, 3);
 
         */
-        _da.AddAtIndex(200, 0);
-        _da.AddAtIndex(300, 1);
-        _da.AddAtIndex(100, 2);
-        _da.AddAtIndex(2000, 3);
-        _da.Search(2000);
+        _dt.AddAtIndex(200, 0);
+        _dt.AddAtIndex(300, 1);
+        _dt.AddAtIndex(100, 2);
+        _dt.AddAtIndex(2000, 3);
+        //_dt.Search(1000);.
         
-        _da.Search(2000);
+        //_dt.DeleteAtIndex(2);
+        _dt.Search(200);
+        
+        //_dt.Imprimir();
         
     }
 }
