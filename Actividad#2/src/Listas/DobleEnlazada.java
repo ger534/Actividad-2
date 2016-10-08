@@ -125,74 +125,11 @@ public class DobleEnlazada<T> implements GenLista<T> {
             temp.set_Siguiente(null);
         }
         
-        
-	/**
-	 * Metodo que inserta segun posicion dada
-	 */
-        /*
-	@Override
-	public void Insertar(T pDato,int pos) {
-            if (pos <= tamaño())    {
-            GenNodo<T> nuevo = new GenNodo<T>(pDato);
-            if (pos == 0){
-                nuevo.set_Siguiente(_raiz);
-                if (_raiz == null)
-                    
-                    _raiz.set_Anterior(nuevo);
-                    _raiz = nuevo;
-            } else
-                if (pos == tamaño())    {
-                    GenNodo<T> tmp = _raiz;
-                    while (tmp.get_Siguiente()!= null) {
-                        tmp = tmp.get_Siguiente();
-                    }
-                    tmp.set_Siguiente(nuevo);
-                    nuevo.set_Anterior(tmp);
-                    //nuevo.set_Siguiente(null);
-                } else {
-                    GenNodo<T> tmp = _raiz;
-                    for (int i = 0 ; i <= pos - 2 ; i++)
-                        tmp = tmp.get_Siguiente();
-                    GenNodo<T> siguiente = tmp.get_Siguiente();
-                    tmp.set_Siguiente(nuevo);
-                    nuevo.set_Anterior(tmp);
-                    nuevo.set_Siguiente(siguiente);
-                    siguiente.set_Anterior(nuevo);
-                }
-        }
-
-	}
-        */
-	
-            /*
-	@Override
-	public T Borrar(int pos) {
-	    if (pos <= tamaño())    {
-            if (pos == 1) {
-                _raiz = _raiz.get_Siguiente();
-                if (_raiz != null)
-                    _raiz.set_Anterior(null);
-            } else {
-                GenNodo<T> tmp = _raiz;
-                for (int i = 1 ; i <= pos - 2 ; i++)
-                    tmp = tmp.get_Siguiente();
-                GenNodo<T> siguiente = tmp.get_Siguiente();
-                siguiente = siguiente.get_Siguiente();
-                tmp.set_Siguiente(siguiente);
-                if (siguiente != null)
-                    siguiente.set_Anterior(tmp);
-            }
-        }
-		return null;
-	}
-            
-        */
-        
         /**
 	 * Borra segun la posicion dada
 	 */
         
-        public T DeleteAtIndex(int pPos) {
+        public void DeleteAtIndex(int pPos) {
 	    if (pPos <= tamaño())    {
             if (pPos == 0) {
                 _raiz = _raiz.get_Siguiente();
@@ -210,13 +147,12 @@ public class DobleEnlazada<T> implements GenLista<T> {
             }
             
 	}
-            return null;
         }
         
  
-/**
- * ************@@@@@@@@@@@@@@ ESTE NO SE OCUPA ************@@@@@@@@@@@@@@
- */
+        /**
+        *************@@@@@@@@@@@@@@ ESTE NO SE OCUPA PARA LA TAREA PERO NOS SIRVE A NOSOTROS ************@@@@@@@@@@@@@@
+        */
 	@Override
 	public void Imprimir() {
 		GenNodo<T> tmp = _raiz;
@@ -231,7 +167,7 @@ public class DobleEnlazada<T> implements GenLista<T> {
          * Metodo que retorna true o false si un deteminado dato se encuentra
          * en la lista
          * @param pDato
-         * @return 
+         * @return boolean que dice si lo encontró o no
          */
         
         public boolean Search(T pDato) {
@@ -245,6 +181,24 @@ public class DobleEnlazada<T> implements GenLista<T> {
 	        }
                 System.out.println("No encontrado");
 	        return false;
+        }
+        
+        /**
+        * ************@@@@@@@@@@@@@@ ESTE NO SE OCUPA PARA LA TAREA PERO NOS SIRVE A NOSOTROS ************@@@@@@@@@@@@@@
+        */
+        public int Encontrar(T pDato) {
+		GenNodo<T> tmp = _raiz;
+	        int i=0;
+                while (tmp != null) {
+	            if (tmp.get_Dato() == pDato){
+	            	System.out.println("Encontrado");
+	                return i;
+	            }
+	            tmp = tmp.get_Siguiente();
+                    i++;
+	        }
+                System.out.println("No encontrado");
+	        return -1;
         }
 }
 
