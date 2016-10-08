@@ -108,10 +108,15 @@ public class CircularSimple<T> implements GenLista<T> {
        
         public void AddFirst (T pDato){
             GenNodo<T> nuevo=new GenNodo<>(pDato);
-            
+            if(_raiz==null){
+                _raiz=nuevo;
+                _tail=nuevo;
+                _tail.set_Siguiente(_raiz);
+            }else{
             nuevo.set_Siguiente(_raiz);
             _raiz=nuevo;
             _tail.set_Siguiente(nuevo);
+        }
         }
         /**
          * Metodo que inserta un elemento al final de la lista circular simple

@@ -111,13 +111,17 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
          *@param pDato
          */
        
-        public void AddFirst (T pDato){
+         public void AddFirst (T pDato){
             GenNodo<T> nuevo=new GenNodo<>(pDato);
-            
+            if(_raiz==null){
+                _raiz=nuevo;
+                _tail=nuevo;
+                _tail.set_Siguiente(_raiz);
+            }else{
             nuevo.set_Siguiente(_raiz);
-            nuevo.set_Anterior(null);
             _raiz=nuevo;
             _tail.set_Siguiente(nuevo);
+        }
         }
         
          /**
