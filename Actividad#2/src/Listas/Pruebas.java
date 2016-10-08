@@ -26,5 +26,7 @@ public class Pruebas {
         _da.AddAtIndex(2000, 3);
         _da.Search(2000);
         
+        _da.Search(2000);
+        
     }
 }

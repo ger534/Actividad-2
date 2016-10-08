@@ -36,8 +36,8 @@ public class DobleEnlazada<T> implements GenLista<T> {
 	 /**
 	 * Metodo que inserta segun posicion dada
 	 */
-	@Override
-        public void Insertar(T pDato, int pPos) {
+	
+        public void AddAtIndex(T pDato, int pPos) {
             if (pPos <= tamaño() + 1)    {
             GenNodo<T> nuevo = new GenNodo<>(pDato);
             if (pPos == 0){
@@ -192,7 +192,7 @@ public class DobleEnlazada<T> implements GenLista<T> {
 	 * Borra segun la posicion dada
 	 */
         
-        public T Borrar(int pPos) {
+        public T DeleteAtIndex(int pPos) {
 	    if (pPos <= tamaño())    {
             if (pPos == 0) {
                 _raiz = _raiz.get_Siguiente();
@@ -214,7 +214,9 @@ public class DobleEnlazada<T> implements GenLista<T> {
         }
         
  
-
+/**
+ * ************@@@@@@@@@@@@@@ ESTE NO SE OCUPA ************@@@@@@@@@@@@@@
+ */
 	@Override
 	public void Imprimir() {
 		GenNodo<T> tmp = _raiz;
@@ -224,6 +226,13 @@ public class DobleEnlazada<T> implements GenLista<T> {
 		}
 
 	}
+        
+        /**
+         * Metodo que retorna true o false si un deteminado dato se encuentra
+         * en la lista
+         * @param pDato
+         * @return 
+         */
         
         public boolean Search(T pDato) {
 		  GenNodo<T> tmp = _raiz;

@@ -235,16 +235,6 @@ public class CircularSimple<T> implements GenLista<T> {
 	        }
 	        return cant;
 	    }
-         
-           @Override
-    public void Insertar(T pDato, int pos) {
-
-    }
-
-    @Override
-    public T Borrar(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
 
   

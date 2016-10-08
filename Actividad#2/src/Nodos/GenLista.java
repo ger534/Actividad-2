@@ -11,9 +11,9 @@ package Nodos;
  */
 public interface GenLista<T> {
 	
-	public void Insertar(T pDato, int pos);
+	//public void Insertar(T pDato, int pos);
 	public int tamaño();
-	public T Borrar(int pos);
+	//public T Borrar(int pos);
 	public void Imprimir();
 	
 
