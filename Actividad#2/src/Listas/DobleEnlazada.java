@@ -32,18 +32,7 @@ public class DobleEnlazada<T> implements GenLista<T> {
 	        }
 	        return cant;
 	    }
-	 /**
-	  * Metodo que retorna el primer nodo de la lista
-	  */
-	 @Override
-	public T Retornar(){
-		 if (_raiz != null)
-		 {
-			 System.out.println(_raiz.get_Dato());
-             return _raiz.get_Dato();
-		 }
-		 return null;	 
-	 }
+         
 	 /**
 	 * Metodo que inserta segun posicion dada
 	 */
@@ -224,22 +213,7 @@ public class DobleEnlazada<T> implements GenLista<T> {
             return null;
         }
         
-            
-	/**
-	 * Busca segun la posicion dada
-	 */
-	@Override
-	public T Buscar(T pDato) {
-		  GenNodo<T> tmp = _raiz;
-	        while (tmp != null) {
-	            if (tmp.get_Dato() == pDato){
-	            	System.out.println("Encontrado: "+tmp.get_Dato());
-	                return tmp.get_Dato();
-	            }
-	            tmp = tmp.get_Siguiente();
-	        }
-	        return null;
-	}
+ 
 
 	@Override
 	public void Imprimir() {
@@ -262,7 +236,7 @@ public class DobleEnlazada<T> implements GenLista<T> {
 	        }
                 System.out.println("No encontrado");
 	        return false;
-}
+        }
 }
 
 

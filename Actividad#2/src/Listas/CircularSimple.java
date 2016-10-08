@@ -187,14 +187,12 @@ public class CircularSimple<T> implements GenLista<T> {
 	
 	public boolean Search(T pDato) {
             GenNodo<T> tmp=_raiz;
-            System.out.println(tamaño());
             for(int i= 0;i<tamaño();i++){
-                if(tmp.get_Dato()== pDato){
+                if(tmp.get_Dato().equals(pDato)){
                     System.out.println(tmp.get_Dato());
                     System.out.println("Encontrado");
                     return true;
                 }if(tmp.get_Dato()!= pDato){
-                    System.out.println("GGGGG");
                     System.out.println(tmp.get_Dato());
                     tmp=tmp.get_Siguiente();
                 }
@@ -219,11 +217,6 @@ public class CircularSimple<T> implements GenLista<T> {
                         cont+=1;
 		}
 */
-	}
-	@Override
-	public T Retornar() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 		/**
@@ -250,11 +243,6 @@ public class CircularSimple<T> implements GenLista<T> {
 
     @Override
     public T Borrar(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T Buscar(T pDato) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

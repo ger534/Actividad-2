@@ -81,20 +81,6 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
 	}
 
 	@Override
-	public T Buscar(T pDato) {
-		if (_raiz == null)
-			return null;
-		else{
-			GenNodo<T> tmp = _raiz;
-			while (tmp.get_Dato() != pDato){
-				tmp = tmp.get_Siguiente();  
-			}
-			System.out.println("Encontrado: "+tmp.get_Dato());
-			return (T) tmp.get_Dato();	
-		}
-	}
-
-	@Override
 	public void Imprimir() {
 		   if (_raiz != null) {
 	            GenNodo<T> tmp = _raiz;
@@ -107,10 +93,6 @@ public class CircularDobleEnlazada<T> implements GenLista<T>{
 		
 	}
 
-	@Override
-	public T Retornar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

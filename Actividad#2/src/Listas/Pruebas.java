@@ -21,30 +21,10 @@ public class Pruebas {
 
         */
         _da.AddAtIndex(200, 0);
-        _da.AddAtIndex(200, 1);
-        _da.AddAtIndex(200, 2);
+        _da.AddAtIndex(300, 1);
+        _da.AddAtIndex(100, 2);
         _da.AddAtIndex(2000, 3);
-        _da.AddAtIndex(200, 4);
-        _da.AddAtIndex(200, 5);
-        _da.AddAtIndex(200, 6);
-        _da.AddAtIndex(100, 7);
-        _da.AddAtIndex(200, 8);
-        
-        System.out.println(_da.tamaño());
-
-        System.out.println(" ");
-        //_da.Imprimir();
-        _da.DeleteLast();
-        _da.Imprimir();
         _da.Search(2000);
-        ////_de.Imprimir();
-        //_de.Search(20);
-       // System.out.println(" ");
-       // _de.Borrar(0);
-       //_de.AddFirst(888);
-       //_de.Imprimir();
-        
-        
         
     }
 }

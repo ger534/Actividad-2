@@ -13,9 +13,7 @@ public interface GenLista<T> {
 	
 	public void Insertar(T pDato, int pos);
 	public int tamaño();
-	public T Retornar();
 	public T Borrar(int pos);
-	public T Buscar(T pDato);
 	public void Imprimir();
 	
 
