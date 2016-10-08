@@ -15,9 +15,11 @@ import Nodos.GenLista;
 public class CircularSimple<T> implements GenLista<T> {
 
 	private GenNodo<T> _raiz;
+        private GenNodo<T> _tail;
 
 	public CircularSimple(){
 		this._raiz = null;
+                this._tail=null;
 
 	}
         
@@ -36,6 +38,7 @@ public class CircularSimple<T> implements GenLista<T> {
                 System.out.println("Aqui1");
                _raiz = nuevo;
                 nuevo.set_Siguiente(_raiz);
+                _tail=nuevo;
                 System.out.println(_raiz.get_Siguiente().get_Dato());
                 
                 //nuevo.set_Anterior(null);
@@ -61,7 +64,9 @@ public class CircularSimple<T> implements GenLista<T> {
                         tmp = tmp.get_Siguiente();
                     }
                     tmp.set_Siguiente(nuevo);
-                    nuevo.set_Anterior(tmp);
+                    nuevo.set_Siguiente(_raiz);
+                    _tail=nuevo;
+                    //nuevo.set_Anterior(tmp);
                   
 //                    nuevo.set_next(null);
                 }else {               
@@ -77,6 +82,7 @@ public class CircularSimple<T> implements GenLista<T> {
                     //GenNodo<T> siguiente = tmp.get_Siguiente();
                     tmp.set_Siguiente(nuevo);
                     nuevo.set_Siguiente(_raiz);
+                    _tail=nuevo;
                                         System.out.println("Aqui4.1.1");
                                         //System.out.println(tamaño());
 
@@ -88,6 +94,7 @@ public class CircularSimple<T> implements GenLista<T> {
                         GenNodo<T> siguiente = tmp.get_Siguiente();
                         tmp.set_Siguiente(nuevo);
                         nuevo.set_Siguiente(siguiente);
+                        _tail=nuevo;
                         //nuevo.set_Anterior(tmp);
                     }
                 }
@@ -104,18 +111,96 @@ public class CircularSimple<T> implements GenLista<T> {
             
             nuevo.set_Siguiente(_raiz);
             _raiz=nuevo;
+            _tail.set_Siguiente(nuevo);
+        }
+        /**
+         * Metodo que inserta un elemento al final de la lista circular simple
+         */
+        public void AddLast(T pDato){
+            GenNodo<T> tmp = _raiz;
+            GenNodo<T> nuevo= new GenNodo<>(pDato);
+                
+                for(int i=0;i<tamaño()-1;i++){
+                    System.out.println(tmp.get_Dato());
+			tmp = tmp.get_Siguiente();
+                }
+                
+                tmp.set_Siguiente(nuevo);
+                nuevo.set_Siguiente(_raiz);
+                _tail=nuevo;
         }
 
-	@Override
-	public T Borrar(int pos) {
-		return null;
-
+	/**
+         * Metodo que elimina un elemento segun una posicion dada
+         * @param pPos
+         * @return 
+         */
+	public T DeleteAtIndex(int pPos) {
+	    if (pPos <= tamaño())    {
+            if (pPos == 0) {
+                _raiz = _raiz.get_Siguiente();
+                _tail=_raiz;
+                if (_raiz != null)
+                    _raiz.set_Anterior(null);
+            } else {
+                GenNodo<T> tmp = _raiz;
+                for (int i = 0 ; i <= pPos - 2 ; i++)
+                    tmp = tmp.get_Siguiente();
+                GenNodo<T> siguiente = tmp.get_Siguiente();
+                siguiente = siguiente.get_Siguiente();
+                tmp.set_Siguiente(siguiente);
+                _tail=tmp;
+                if (siguiente != null)
+                    siguiente.set_Anterior(tmp);
+            }
+            
 	}
-
-	@Override
-	public T Buscar(T pDato) {
-		// TODO Auto-generated method stub
-		return null;
+            return null;
+        }
+        
+        /**
+         * Metodo que borra el primer elemento de la lista
+         */
+        public void DeleteFirst(){
+            _raiz=_raiz.get_Siguiente();
+            _tail.set_Siguiente(_raiz);
+        }
+        
+        /**
+         * Metodo que borra el ulitmo elemento de la lista
+         */
+        
+        public void DeleteLast(){
+            GenNodo<T> tmp=_raiz;
+            for(int i=0;i<tamaño()-2;i++){
+                tmp=tmp.get_Siguiente();
+            }
+            tmp.set_Siguiente(_raiz);
+            _tail=tmp;
+        }
+        
+        /**
+         * Metodo que retorna true o false al buscar un dato en la lista
+         * @param pDato
+         * @return 
+         */
+	
+	public boolean Search(T pDato) {
+            GenNodo<T> tmp=_raiz;
+            System.out.println(tamaño());
+            for(int i= 0;i<tamaño();i++){
+                if(tmp.get_Dato()== pDato){
+                    System.out.println(tmp.get_Dato());
+                    System.out.println("Encontrado");
+                    return true;
+                }if(tmp.get_Dato()!= pDato){
+                    System.out.println("GGGGG");
+                    System.out.println(tmp.get_Dato());
+                    tmp=tmp.get_Siguiente();
+                }
+            }
+            System.out.println("No encontrado");
+            return false;
 	}
 
 	@Override
@@ -161,6 +246,16 @@ public class CircularSimple<T> implements GenLista<T> {
            @Override
     public void Insertar(T pDato, int pos) {
 
+    }
+
+    @Override
+    public T Borrar(int pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public T Buscar(T pDato) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

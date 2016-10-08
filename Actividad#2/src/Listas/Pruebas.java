@@ -20,16 +20,23 @@ public class Pruebas {
         _de.Insertar(5, 3);
 
         */
-        _da.AddAtIndex(100, 0);
+        _da.AddAtIndex(200, 0);
         _da.AddAtIndex(200, 1);
-        _da.AddAtIndex(1000, 2);
-        _da.AddAtIndex(550, 3);
-        _da.AddAtIndex(2000, 4);
-
+        _da.AddAtIndex(200, 2);
+        _da.AddAtIndex(2000, 3);
+        _da.AddAtIndex(200, 4);
+        _da.AddAtIndex(200, 5);
+        _da.AddAtIndex(200, 6);
+        _da.AddAtIndex(100, 7);
+        _da.AddAtIndex(200, 8);
         
-       // _da.Imprimir();
-        //_da.AddFirst(5001);
+        System.out.println(_da.tamaño());
+
+        System.out.println(" ");
         //_da.Imprimir();
+        _da.DeleteLast();
+        _da.Imprimir();
+        _da.Search(2000);
         ////_de.Imprimir();
         //_de.Search(20);
        // System.out.println(" ");
